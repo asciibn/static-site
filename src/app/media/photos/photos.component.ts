@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../service/service.service';
 
 @Component({
   selector: 'app-photos',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ServiceService ) { }
+
+  private photosResult;
 
   ngOnInit() {
+    this.service.getPhotos().subscribe( (results) => {
+      this.photosResult = results;
+      //console.log(this.photosResult);
+    });
   }
 
 }
